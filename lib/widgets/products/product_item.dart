@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../models/product.dart';
 
+import '../../screens/product_details_screen.dart';
+
 class ProductItem extends StatefulWidget {
   final Product item;
 
@@ -49,7 +51,11 @@ class _ProductItemState extends State<ProductItem> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => ProductDetailsScreen(widget.item),
+            ),
+          ),
           borderRadius: BorderRadius.circular(12.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
