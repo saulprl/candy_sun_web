@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/global/main_drawer.dart';
+import '../widgets/products/product_list.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
   const ProductsOverviewScreen({Key? key}) : super(key: key);
@@ -18,8 +19,9 @@ class ProductsOverviewScreen extends StatelessWidget {
         ],
       ),
       drawer: const MainDrawer(),
-      body: const Center(
-        child: CircularProgressIndicator(),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ProductList(),
       ),
     );
   }
