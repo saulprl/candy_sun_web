@@ -8,6 +8,7 @@ class Product {
   final double calories;
   final String trademark;
   final DateTime expirationDate;
+  final String image;
 
   Product({
     required this.id,
@@ -19,5 +20,6 @@ class Product {
     required this.calories,
     required this.trademark,
     required this.expirationDate,
+    required this.image,
   });
 }
