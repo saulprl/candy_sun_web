@@ -82,10 +82,71 @@ class _ProductItemState extends State<ProductItem> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // trailing: IconButton(
-                //   icon: const Icon(Icons.expand_more),
-                //   onPressed: () {},
-                // ),
+                trailing: PopupMenuButton(
+                  icon: const Icon(Icons.more_horiz),
+                  itemBuilder: (ctx) => [
+                    PopupMenuItem<int>(
+                      value: 0,
+                      child: Row(
+                        children: const [
+                          Icon(Icons.edit, color: Colors.amber),
+                          SizedBox(width: 8.0),
+                          Text('Editar'),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<int>(
+                      value: 1,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: Theme.of(ctx).colorScheme.error,
+                          ),
+                          const SizedBox(width: 8.0),
+                          const Text('Eliminar'),
+                        ],
+                      ),
+                    )
+                  ],
+                  onSelected: (value) {
+                    switch (value) {
+                      case 0:
+                        break;
+                      case 1:
+                        showDialog<bool>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text('Eliminar producto'),
+                            content: const Text(
+                                '¿Deseas eliminar este producto? No podrás recuperarlo.'),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  'Cancelar',
+                                  style: TextStyle(
+                                    color: Theme.of(ctx).colorScheme.secondary,
+                                  ),
+                                ),
+                                onPressed: () => Navigator.of(ctx).pop(false),
+                              ),
+                              TextButton(
+                                child: Text(
+                                  'Eliminar',
+                                  style: TextStyle(
+                                    color: Theme.of(ctx).colorScheme.error,
+                                  ),
+                                ),
+                                onPressed: () => Navigator.of(ctx).pop(true),
+                              ),
+                            ],
+                          ),
+                        );
+                        break;
+                    }
+                  },
+                ),
               ),
             ],
           ),
