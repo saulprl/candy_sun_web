@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './product_form_screen.dart';
+
 import '../widgets/global/main_drawer.dart';
 import '../widgets/products/product_list.dart';
 
@@ -13,8 +15,14 @@ class ProductsOverviewScreen extends StatelessWidget {
         title: const Text('Products'),
         actions: [
           IconButton(
-            onPressed: () {},
             icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const ProductFormScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
