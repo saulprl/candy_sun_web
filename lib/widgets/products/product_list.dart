@@ -95,6 +95,7 @@ class ProductList extends StatelessWidget {
         mainAxisSpacing: 6.0,
         crossAxisSpacing: deviceSize.width * 0.01,
       ),
+      shrinkWrap: true,
     );
   }
 }
