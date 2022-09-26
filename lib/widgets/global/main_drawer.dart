@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../providers/theme_preferences.dart';
 
+import '../../screens/employee_overview_screen.dart';
+import '../../screens/products_overview_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
@@ -62,6 +65,16 @@ class MainDrawer extends StatelessWidget {
             const SizedBox(height: 10.0),
             _buildListTile(
               context,
+              'Products',
+              Icons.category,
+              () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => const ProductsOverviewScreen(),
+                ),
+              ),
+            ),
+            _buildListTile(
+              context,
               'Sales',
               Icons.attach_money,
               () {},
@@ -70,7 +83,11 @@ class MainDrawer extends StatelessWidget {
               context,
               'Employees',
               Icons.person,
-              () {},
+              () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => const EmployeeOverviewScreen(),
+                ),
+              ),
             ),
             _buildListTile(
               context,
