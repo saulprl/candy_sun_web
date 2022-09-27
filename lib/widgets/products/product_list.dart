@@ -74,13 +74,17 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     var crossAxis = 1;
-    var aspectRatio = 4.0;
-    if (deviceSize.width > 375 && deviceSize.width < 768) {
+    var ratio = 4.0;
+    if (deviceSize.width >= 375 && deviceSize.width < 425) {
+      ratio = 4.7;
+    } else if (deviceSize.width >= 425 && deviceSize.width < 768) {
+      ratio = 5.3;
+    } else if (deviceSize.width >= 768 && deviceSize.width < 1024) {
       crossAxis = 2;
-      aspectRatio = 2.6;
-    } else if (deviceSize.width >= 768) {
+      ratio = 4.8;
+    } else if (deviceSize.width >= 1024) {
       crossAxis = 3;
-      aspectRatio = 3.2;
+      ratio = 4.5;
     }
 
     return GridView.builder(
@@ -91,7 +95,7 @@ class ProductList extends StatelessWidget {
       itemCount: DUMMY_LIST.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxis,
-        childAspectRatio: aspectRatio,
+        childAspectRatio: ratio,
         mainAxisSpacing: 6.0,
         crossAxisSpacing: deviceSize.width * 0.01,
       ),

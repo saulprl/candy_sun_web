@@ -27,9 +27,15 @@ class ProductsOverviewScreen extends StatelessWidget {
         ],
       ),
       drawer: const MainDrawer(),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: ProductList(),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: MediaQuery.of(context).size.width >= 1024
+              ? 1024
+              : double.infinity,
+          padding: const EdgeInsets.all(8.0),
+          child: const ProductList(),
+        ),
       ),
     );
   }
