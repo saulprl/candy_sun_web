@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../widgets/products/product_form.dart';
 
+import '../models/product.dart';
+
 class ProductFormScreen extends StatelessWidget {
-  const ProductFormScreen({Key? key}) : super(key: key);
+  final Product? item;
+
+  const ProductFormScreen({this.item, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +15,10 @@ class ProductFormScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Add a product'),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: ProductForm(vertical: true),
+          padding: const EdgeInsets.all(8.0),
+          child: ProductForm(item: item),
         ),
       ),
     );
