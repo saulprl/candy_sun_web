@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/products.dart';
 
 import '../../models/product.dart';
 
 import '../../screens/product_details_screen.dart';
+import '../../screens/product_form_screen.dart';
 
 class ProductItem extends StatefulWidget {
   final Product item;
@@ -76,9 +80,9 @@ class _ProductItemState extends State<ProductItem> {
                 subtitle: Text('\$${widget.item.price}'),
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: FadeInImage(
-                    placeholder: const AssetImage('assets/img/No_Image.jpg'),
-                    image: AssetImage(widget.item.image),
+                  child: const FadeInImage(
+                    placeholder: AssetImage('assets/img/No_Image.jpg'),
+                    image: AssetImage('assets/img/No_Image.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -112,6 +116,12 @@ class _ProductItemState extends State<ProductItem> {
                   onSelected: (value) {
                     switch (value) {
                       case 0:
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) =>
+                                ProductFormScreen(item: widget.item),
+                          ),
+                        );
                         break;
                       case 1:
                         showDialog<bool>(
@@ -142,6 +152,11 @@ class _ProductItemState extends State<ProductItem> {
                               ),
                             ],
                           ),
+                        ).then(
+                          (value) => Provider.of<Products>(
+                            context,
+                            listen: false,
+                          ).deleteProduct(widget.item.id),
                         );
                         break;
                     }
