@@ -60,13 +60,13 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.horizontal(
+              const ClipRRect(
+                borderRadius: BorderRadius.horizontal(
                   left: Radius.circular(12.0),
                 ),
                 child: FadeInImage(
-                  placeholder: const AssetImage('assets/img/No_Image.jpg'),
-                  image: AssetImage(item.image),
+                  placeholder: AssetImage('assets/img/No_Image.jpg'),
+                  image: AssetImage('assets/img/No_Image.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -100,15 +100,15 @@ class ProductDetailsScreen extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxHeight: deviceSize.height * 0.4,
                 ),
-                child: FittedBox(
+                child: const FittedBox(
                   fit: BoxFit.fill,
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
+                    borderRadius: BorderRadius.vertical(
                       top: Radius.circular(12.0),
                     ),
                     child: FadeInImage(
-                      placeholder: const AssetImage('assets/img/No_Image.jpg'),
-                      image: AssetImage(item.image),
+                      placeholder: AssetImage('assets/img/No_Image.jpg'),
+                      image: AssetImage('assets/img/No_Image.jpg'),
                     ),
                   ),
                 ),
