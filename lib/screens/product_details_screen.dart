@@ -20,15 +20,25 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
         ),
         const Divider(),
-        Text('Price: \$${item.price} | Cost: \$${item.cost}'),
+        Text(
+          'Price: \$${item.price.toStringAsFixed(2)} | Cost: \$${item.cost.toStringAsFixed(2)}',
+          style: const TextStyle(fontSize: 16.0),
+        ),
         // const Divider(),
         Text(
           'Expiration date: ${DateFormat.yMMMd().format(item.expirationDate)}',
+          style: const TextStyle(fontSize: 16.0),
         ),
         // const Divider(),
-        Text('Calories: ${item.calories}'),
+        Text(
+          'Calories: ${item.calories}',
+          style: const TextStyle(fontSize: 16.0),
+        ),
         // const Divider(),
-        Text('Quantity: ${item.quantity}'),
+        Text(
+          'Quantity: ${item.quantity}',
+          style: const TextStyle(fontSize: 16.0),
+        ),
       ],
     );
   }
@@ -61,7 +71,10 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12.0),
+                padding: const EdgeInsets.only(
+                  top: 12.0,
+                  left: 12.0,
+                ),
                 child: _buildItemInfo(),
               ),
             ],
