@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './providers/theme_preferences.dart';
+import './providers/products.dart';
 
 import './screens/products_overview_screen.dart';
 
@@ -41,6 +42,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => ThemePreferences(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => Products(),
+        )
       ],
       child: Consumer<ThemePreferences>(
         builder: (ctx, themeProvider, ch) => MaterialApp(
