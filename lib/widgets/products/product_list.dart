@@ -1,71 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/products.dart';
 
 import '../../models/product.dart';
 
 import './product_item.dart';
-
-final DUMMY_LIST = [
-  Product(
-    id: 'p1',
-    title: 'Title 1',
-    price: 1.99,
-    cost: 2.49,
-    dateOfPurchase: DateTime.utc(2022),
-    quantity: 30,
-    calories: 150.0,
-    trademark: 'Trademark 1',
-    expirationDate: DateTime.utc(2023),
-    image: 'assets/img/No_Image.jpg',
-  ),
-  Product(
-    id: 'p2',
-    title: 'Title 2',
-    price: 1.99,
-    cost: 2.49,
-    dateOfPurchase: DateTime.utc(2022),
-    quantity: 30,
-    calories: 150.0,
-    trademark: 'Trademark 2',
-    expirationDate: DateTime.utc(2023),
-    image: 'assets/img/No_Image.jpg',
-  ),
-  Product(
-    id: 'p3',
-    title: 'Title 3',
-    price: 1.99,
-    cost: 2.49,
-    dateOfPurchase: DateTime.utc(2022),
-    quantity: 30,
-    calories: 150.0,
-    trademark: 'Trademark 1',
-    expirationDate: DateTime.utc(2023),
-    image: 'assets/img/No_Image.jpg',
-  ),
-  Product(
-    id: 'p4',
-    title: 'Title 4',
-    price: 1.99,
-    cost: 2.49,
-    dateOfPurchase: DateTime.utc(2022),
-    quantity: 30,
-    calories: 150.0,
-    trademark: 'Trademark 2',
-    expirationDate: DateTime.utc(2023),
-    image: 'assets/img/No_Image.jpg',
-  ),
-  Product(
-    id: 'p5',
-    title: 'Title 5',
-    price: 1.99,
-    cost: 2.49,
-    dateOfPurchase: DateTime.utc(2022),
-    quantity: 30,
-    calories: 150.0,
-    trademark: 'Trademark 3',
-    expirationDate: DateTime.utc(2023),
-    image: 'assets/img/No_Image.jpg',
-  ),
-];
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -87,19 +27,22 @@ class ProductList extends StatelessWidget {
       ratio = 4.5;
     }
 
-    return GridView.builder(
-      itemBuilder: (ctx, index) => ProductItem(
-        DUMMY_LIST[index],
-        key: ValueKey(DUMMY_LIST[index].id),
+    return Consumer<Products>(
+      builder: (ctx, productsData, ch) => GridView.builder(
+        itemBuilder: (ctx, index) => ProductItem(
+          productsData.items[index],
+          key: ValueKey(productsData.items[index].id),
+        ),
+        itemCount: productsData.items.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxis,
+          childAspectRatio: ratio,
+          mainAxisSpacing: 6.0,
+          crossAxisSpacing: deviceSize.width * 0.01,
+        ),
+        shrinkWrap: true,
       ),
-      itemCount: DUMMY_LIST.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxis,
-        childAspectRatio: ratio,
-        mainAxisSpacing: 6.0,
-        crossAxisSpacing: deviceSize.width * 0.01,
-      ),
-      shrinkWrap: true,
+      child: const Center(child: CircularProgressIndicator()),
     );
   }
 }
